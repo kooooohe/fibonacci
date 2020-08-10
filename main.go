@@ -12,7 +12,7 @@ type fibNum struct {
 
 func main() {
 	//println(fib(8))
-	fmt.Println(calcFib(100))
+	fmt.Println(calcFib(1000))
 }
 
 func calcFib(n int) *big.Int {
@@ -84,7 +84,7 @@ func fibMin(t1, t2 fibNum) (r fibNum) {
 	return
 }
 
-//(ac+5bd)+(ad+bc)√5
+//(a+b√5)(c+d√5) = (ac+5bd)+(ad+bc)√5
 func fibMul(t1, t2 fibNum) (r fibNum) {
 	//(ac+5bd)
 	var r1, r2 *big.Rat
