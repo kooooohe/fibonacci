@@ -15,6 +15,7 @@ func main() {
 	fmt.Println(calcFib(1000))
 }
 
+// (((1+√5)/2)^n - ((1-√5)/2)^n) / √5
 func calcFib(n int) *big.Int {
 	// (1+√5)/2
 	a := big.NewRat(1, 2)
