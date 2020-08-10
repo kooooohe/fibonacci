@@ -6,8 +6,8 @@ import (
 )
 
 type fibNum struct {
-	num        *big.Rat
-	squareRoot *big.Rat
+	num               *big.Rat
+	numMultipliedBySR *big.Rat
 }
 
 func main() {
@@ -45,7 +45,7 @@ func fibExp(t fibNum, n int) fibNum {
 	r := t
 
 	// 1
-	a := fibNum{num: big.NewRat(1, 1), squareRoot: big.NewRat(0, 999)}
+	a := fibNum{num: big.NewRat(1, 1), numMultipliedBySR: big.NewRat(0, 999)}
 
 	for n > 1 {
 		if n%2 == 1 {
@@ -76,12 +76,12 @@ func fibMin(t1, t2 fibNum) (r fibNum) {
 	)
 
 	r2 := new(big.Rat).Add(
-		t1.squareRoot,
-		new(big.Rat).Mul(t2.squareRoot, big.NewRat(-1, 1)),
+		t1.numMultipliedBySR,
+		new(big.Rat).Mul(t2.numMultipliedBySR, big.NewRat(-1, 1)),
 	)
 
 	r.num = r1
-	r.squareRoot = r2
+	r.numMultipliedBySR = r2
 	return
 }
 
@@ -91,21 +91,21 @@ func fibMul(t1, t2 fibNum) (r fibNum) {
 	var r1, r2 *big.Rat
 	tmp1 := new(big.Rat).Mul(t1.num, t2.num)
 	tmp2 := new(big.Rat).Mul(
-		new(big.Rat).Mul(t1.squareRoot, t2.squareRoot),
+		new(big.Rat).Mul(t1.numMultipliedBySR, t2.numMultipliedBySR),
 		big.NewRat(5, 1),
 	)
 	r1 = new(big.Rat).Add(tmp1, tmp2)
 
 	//(ad+bc)√5
-	tmp3 := new(big.Rat).Mul(t1.num, t2.squareRoot)
-	tmp4 := new(big.Rat).Mul(t1.squareRoot, t2.num)
+	tmp3 := new(big.Rat).Mul(t1.num, t2.numMultipliedBySR)
+	tmp4 := new(big.Rat).Mul(t1.numMultipliedBySR, t2.num)
 	r2 = new(big.Rat).Add(tmp3, tmp4)
 
 	//(ac+5bd)+(ad+bc)√5
 	//rrr := new(big.Rat).Add(r3, rr3)
 
 	r.num = r1
-	r.squareRoot = r2
+	r.numMultipliedBySR = r2
 	return
 }
 
