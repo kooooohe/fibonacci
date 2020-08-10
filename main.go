@@ -31,9 +31,6 @@ func calcFib(n int) *big.Int {
 	f := big.NewRat(1, 5)
 	z := fibNum{e, f}
 
-	//r := new(big.Rat).Mul(x.num, y.num)
-	//fmt.Println(r)
-
 	tmp := fibMin(fibExp(x, n), fibExp(y, n))
 
 	// *(1/√5)
@@ -81,8 +78,6 @@ func fibMin(t1, t2 fibNum) (r fibNum) {
 		t1.squareRoot,
 		new(big.Rat).Mul(t2.squareRoot, big.NewRat(-1, 1)),
 	)
-	//fmt.Println(r1)
-	//fmt.Println(r2)
 
 	r.num = r1
 	r.squareRoot = r2
